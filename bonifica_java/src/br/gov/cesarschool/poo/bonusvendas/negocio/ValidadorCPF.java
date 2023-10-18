@@ -8,7 +8,7 @@ public class ValidadorCPF {
 		
 	}
 	
-	public static boolean isCPF(String CPF) {
+	public static boolean ehCpfValido(String CPF) {
 	       
 	        if (CPF.equals("00000000000") ||
 	            CPF.equals("11111111111") ||
