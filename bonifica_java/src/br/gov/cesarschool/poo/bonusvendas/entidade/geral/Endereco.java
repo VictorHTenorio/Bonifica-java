@@ -8,7 +8,7 @@ public class Endereco implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String logradouro;
-	private int numeroInteiro;
+	private int numero;
 	private String complemento;
 	private String cep;
 	private String cidade;
@@ -19,7 +19,7 @@ public class Endereco implements Serializable{
 			String pais) {
 		super();
 		this.logradouro = logradouro;
-		this.numeroInteiro = numeroInteiro;
+		this.numero = numeroInteiro;
 		this.complemento = complemento;
 		this.cep = cep;
 		this.cidade = cidade;
@@ -36,11 +36,11 @@ public class Endereco implements Serializable{
 	}
 
 	public int getNumeroInteiro() {
-		return numeroInteiro;
+		return numero;
 	}
 
 	public void setNumeroInteiro(int numeroInteiro) {
-		this.numeroInteiro = numeroInteiro;
+		this.numero = numeroInteiro;
 	}
 
 	public String getComplemento() {
