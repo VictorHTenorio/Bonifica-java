@@ -56,7 +56,7 @@ public class AcumuloResgateMediator {
 
 	  public String acumularBonus(long numCaixaDeBonus, double valor) {
 		  if (valor <= 0) {
-			  return "Valor menor ou igual a zero.\n";
+			  return "Valor menor ou igual a zero";
 		  }
 		  CaixaDeBonus caixa = repositorioCaixaBonus.buscar(numCaixaDeBonus);
 		  if (caixa != null) {
@@ -66,13 +66,13 @@ public class AcumuloResgateMediator {
 			  repositorioLancamento.incluir(lancamento);
 			  return null;
 		  } else {
-			  return "Caixa de bonus inexistente.\n";
+			  return "Caixa de bonus inexistente";
 		  }
 	  }
 
 	  public String resgatar(long numeroCaixaDeBonus, double valor, TipoResgate tipoResgate) {
 		  if (valor <= 0) {
-			  return "Valor menor ou igual a zero.\n";
+			  return "Valor menor ou igual a zero";
 		  }
 		  CaixaDeBonus caixa = repositorioCaixaBonus.buscar(numeroCaixaDeBonus);
 
@@ -80,14 +80,14 @@ public class AcumuloResgateMediator {
 			  if (caixa.getSaldo() >= valor) {
 				  caixa.debitar(valor);
 				  repositorioCaixaBonus.alterar(caixa);
-				  LancamentoBonusDebito lancamento = new LancamentoBonusDebito (numeroCaixaDeBonus, valor, LocalDateTime.now(),tipoResgate);
+				  LancamentoBonusDebito lancamento = new LancamentoBonusDebito (numeroCaixaDeBonus, valor, LocalDateTime.now(), tipoResgate);
 				  repositorioLancamento.incluir(lancamento);
 				  return null;
 			  } else {
-				  return "Saldo insuficiente.\n";
+				  return "Saldo insuficiente";
 			  }
 		  } else {
-			  return "Caixa de bonus inexistente.\n";
+			  return "Caixa de bonus inexistente";
 		  }
 	  }
 }

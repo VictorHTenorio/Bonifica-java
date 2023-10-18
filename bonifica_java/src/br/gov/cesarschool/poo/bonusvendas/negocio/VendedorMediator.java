@@ -16,7 +16,7 @@ public class VendedorMediator {
 		caixaDeBonusMediator = AcumuloResgateMediator.getInstancia();
 	}
 	
-	public static VendedorMediator getInstance() {
+	public static VendedorMediator getInstancia() {
 		if (instance == null) {
 			instance = new VendedorMediator();
 		}
@@ -75,14 +75,14 @@ public class VendedorMediator {
 	      return resultado;
 	    }
 	    
+	    boolean incluir = repositorioVendedor.incluir(vendedor);
+	    if (incluir == false) {
+	    	return new ResultadoInclusaoVendedor(0, "Vendedor ja existente");
+	    }
+	    
 	    long numeroCaixaDeBonus = caixaDeBonusMediator.gerarCaixaDeBonus(vendedor);
 	    if (numeroCaixaDeBonus == 0) {
 	    	return new ResultadoInclusaoVendedor(0, "Caixa de bonus nao foi gerada");
-	    }
-
-	    boolean incluir = repositorioVendedor.incluir(vendedor);
-	    if (incluir == false) {
-	      return new ResultadoInclusaoVendedor(0, "Vendedor ja existente");
 	    }
 	    
 	    return new ResultadoInclusaoVendedor(numeroCaixaDeBonus, null);

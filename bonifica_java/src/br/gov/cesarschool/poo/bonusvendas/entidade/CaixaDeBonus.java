@@ -14,6 +14,7 @@ public class CaixaDeBonus implements Serializable{
 	
 	public CaixaDeBonus(long numero) {
 		this.numero = numero;
+		this.dataHoraAtualizacao = LocalDateTime.now();
 	}
 	
 	public long getNumero() {
