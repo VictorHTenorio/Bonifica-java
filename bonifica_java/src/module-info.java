@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module bonifica_java {
-}

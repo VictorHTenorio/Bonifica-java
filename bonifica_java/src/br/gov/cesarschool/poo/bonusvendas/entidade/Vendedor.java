@@ -1,13 +1,17 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
+import java.io.Serializable;
 
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
 
-public class Vendedor {
+public class Vendedor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cpf;
 	private String nomeCompleto;
 	private br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo sexo;
@@ -70,7 +74,7 @@ public class Vendedor {
 		this.endereco = endereco;
 	}
 	
-	private int calcularIdade() {
+	public int calcularIdade() {
 	    Period periodo = Period.between(dataNascimento, LocalDate.now());
 	    return periodo.getYears();
 	}

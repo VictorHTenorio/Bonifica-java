@@ -1,8 +1,13 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
-public class LancamentoBonus {
+public class LancamentoBonus implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long numeroDeCaixasDeBonus;
 	private double valor;
 	private java.time.LocalDateTime dataHoraLancamento;
