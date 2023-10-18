@@ -35,11 +35,11 @@ public class Endereco implements Serializable{
 		this.logradouro = logradouro;
 	}
 
-	public int getNumeroInteiro() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumeroInteiro(int numeroInteiro) {
+	public void setNumero(int numeroInteiro) {
 		this.numero = numeroInteiro;
 	}
 

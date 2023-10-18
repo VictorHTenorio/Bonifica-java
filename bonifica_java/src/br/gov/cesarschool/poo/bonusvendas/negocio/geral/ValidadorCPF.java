@@ -1,4 +1,4 @@
-package br.gov.cesarschool.poo.bonusvendas.negocio;
+package br.gov.cesarschool.poo.bonusvendas.negocio.geral;
 
 import java.util.InputMismatchException;
 
@@ -9,7 +9,8 @@ public class ValidadorCPF {
 	}
 	
 	public static boolean ehCpfValido(String CPF) {
-	       
+		
+  
 	        if (CPF.equals("00000000000") ||
 	            CPF.equals("11111111111") ||
 	            CPF.equals("22222222222") || CPF.equals("33333333333") ||
