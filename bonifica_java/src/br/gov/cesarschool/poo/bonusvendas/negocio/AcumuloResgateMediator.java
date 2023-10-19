@@ -28,6 +28,14 @@ public class AcumuloResgateMediator {
 		  this.repositorioCaixaBonus = new CaixaDeBonusDAO();
 		  this.repositorioLancamento = new LancamentoBonusDAO();
 	  }
+	  
+	  public CaixaDeBonus buscarCaixaDeBonus(long numeroCaixaDeBonus) {
+		  CaixaDeBonus caixa = repositorioCaixaBonus.buscar(numeroCaixaDeBonus);
+		  if (caixa == null) {
+			  return null;
+		  }
+		  return caixa;
+	  }
 
 	  public long gerarCaixaDeBonus(Vendedor vendedor) {
 		  String cpf = vendedor.getCpf();

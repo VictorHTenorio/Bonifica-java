@@ -2,7 +2,7 @@ package br.gov.cesarschool.poo.bonusvendas.entidade;
 
 public enum TipoResgate {
 	PRODUTO(0, "Produto"),
-	SERVICO(1, "Servico"),
+	SERVICO(1, "Serviço"),
 	CASH(2, "Cash");
 	
 	private int codigo;
