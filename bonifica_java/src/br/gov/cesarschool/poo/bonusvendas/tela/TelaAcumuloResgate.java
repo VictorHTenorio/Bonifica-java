@@ -66,7 +66,7 @@ public class TelaAcumuloResgate {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(337, 355);
+		shell.setSize(394, 420);
 		shell.setText("SWT Application");
 		
 		textNumeroCaixaDeBonus = new Text(shell, SWT.BORDER);
@@ -77,58 +77,58 @@ public class TelaAcumuloResgate {
 		lblNmeroDaCaixa.setText("Número da caixa de bônus:");
 		
 		Button btnBuscar = new Button(shell, SWT.NONE);
-		btnBuscar.setBounds(236, 30, 75, 25);
+		btnBuscar.setBounds(293, 30, 75, 25);
 		btnBuscar.setText("Buscar");
 		
 		textSaldoAtual = new Text(shell, SWT.BORDER);
 		textSaldoAtual.setEnabled(false);
-		textSaldoAtual.setBounds(10, 138, 153, 21);
+		textSaldoAtual.setBounds(10, 163, 153, 21);
 		
 		Label lblSaldoAtual = new Label(shell, SWT.NONE);
 		lblSaldoAtual.setEnabled(false);
-		lblSaldoAtual.setBounds(10, 117, 153, 15);
+		lblSaldoAtual.setBounds(10, 136, 153, 15);
 		lblSaldoAtual.setText("Saldo Atual:");
 		
 		Label lblOperacao = new Label(shell, SWT.NONE);
-		lblOperacao.setBounds(10, 59, 55, 15);
+		lblOperacao.setBounds(10, 72, 55, 15);
 		lblOperacao.setText("Operação:");
 		
 		Button btnAcumulo = new Button(shell, SWT.RADIO);
-		btnAcumulo.setBounds(10, 81, 75, 16);
+		btnAcumulo.setBounds(10, 98, 75, 16);
 		btnAcumulo.setText("Acumulo");
 		
 		Button btnResgate = new Button(shell, SWT.RADIO);
-		btnResgate.setBounds(91, 81, 90, 16);
+		btnResgate.setBounds(106, 98, 90, 16);
 		btnResgate.setText("Resgate");
 		
 		Label lblTipoDeResgate = new Label(shell, SWT.NONE);
 		lblTipoDeResgate.setEnabled(false);
-		lblTipoDeResgate.setBounds(10, 165, 153, 15);
+		lblTipoDeResgate.setBounds(10, 213, 153, 15);
 		lblTipoDeResgate.setText("Tipo de Resgate:");
 		
 		textValor = new Text(shell, SWT.BORDER);
 		textValor.setEnabled(false);
-		textValor.setBounds(10, 236, 154, 21);
+		textValor.setBounds(10, 309, 154, 21);
 		
 		Label lblValor = new Label(shell, SWT.NONE);
 		lblValor.setEnabled(false);
-		lblValor.setBounds(11, 215, 55, 15);
+		lblValor.setBounds(10, 284, 55, 15);
 		lblValor.setText("Valor:");
 		
 		Button btnVoltar = new Button(shell, SWT.NONE);
 		btnVoltar.setEnabled(false);
-		btnVoltar.setBounds(10, 281, 75, 25);
+		btnVoltar.setBounds(10, 346, 75, 25);
 		btnVoltar.setText("Voltar");
 		
 		Button btnAcumularresgatar = new Button(shell, SWT.NONE);
 		btnAcumularresgatar.setEnabled(false);
-		btnAcumularresgatar.setBounds(179, 281, 132, 25);
+		btnAcumularresgatar.setBounds(236, 346, 132, 25);
 		btnAcumularresgatar.setText("Acumular/Resgatar");
 		
 		Combo comboTipoResgate = new Combo(shell, SWT.NONE);
 		comboTipoResgate.setEnabled(false);
 		comboTipoResgate.setItems(new String[] {"Produto", "Serviço", "Cash"});
-		comboTipoResgate.setBounds(10, 186, 91, 23);
+		comboTipoResgate.setBounds(10, 240, 91, 23);
 		
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
