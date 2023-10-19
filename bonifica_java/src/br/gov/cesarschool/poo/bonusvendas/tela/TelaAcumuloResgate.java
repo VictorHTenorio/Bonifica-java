@@ -202,9 +202,10 @@ public class TelaAcumuloResgate {
 				long numeroCaixaDeBonus = Long.parseLong(textNumeroCaixaDeBonus.getText());
 				double valor = Double.parseDouble(textValor.getText());
 				String mensagemSucesso = null;
+				String retorno = null;
 				
 				if(btnAcumularresgatar.getText() == "Acumular") {
-					mediator.acumularBonus(numeroCaixaDeBonus, valor);
+					retorno = mediator.acumularBonus(numeroCaixaDeBonus, valor);
 					mensagemSucesso = "Valor acumulado com Sucesso!";
 				}else {
 					String selectedText = comboTipoResgate.getText();
@@ -217,13 +218,18 @@ public class TelaAcumuloResgate {
                     	mensagemSucesso = "";
                     	return;
                     }else {                    	
-                    	mediator.resgatar(numeroCaixaDeBonus, valor, tipoResgate);
+                    	retorno = mediator.resgatar(numeroCaixaDeBonus, valor, tipoResgate);
                     	mensagemSucesso = "Valor retirado com Sucesso!";
                     }
 				}
-				MessageBox messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
-				messageBox.setMessage(mensagemSucesso);
-				messageBox.open();
+				if(retorno != null) {
+					mostrarMensagemErro(retorno);
+					return;
+				}else {					
+					MessageBox messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
+					messageBox.setMessage(mensagemSucesso);
+					messageBox.open();
+				}
 				btnVoltar.notifyListeners(SWT.MouseDown, new Event());
 				
 			}
