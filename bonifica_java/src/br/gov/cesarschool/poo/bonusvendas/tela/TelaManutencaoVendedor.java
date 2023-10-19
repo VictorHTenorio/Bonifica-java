@@ -17,13 +17,15 @@ public class TelaManutencaoVendedor {
 	private Button radSexoF;
 	private Text txtDataNascimento;
 	private Text txtRenda;
-	private Text txtLogradouro;
 	private Text txtNumero;
 	private Text txtComplemento;
 	private Text txtCEP;
 	private Text txtCidade;
 	private Combo cmbEstado;
 	private VendedorMediator mediator = VendedorMediator.getInstancia();
+	private Text txtLogradouro;
+	
+
 
 	/**
 	 * Launch the application.
@@ -102,39 +104,60 @@ public class TelaManutencaoVendedor {
 	    // Renda
 	    Label lblRenda = new Label(shell, SWT.NONE);
 	    lblRenda.setText("Renda:");
-	    lblRenda.setBounds(10, 130, 100, 20);
+	    lblRenda.setBounds(10, 202, 39, 20);
 	    txtRenda = new Text(shell, SWT.BORDER);
-	    txtRenda.setBounds(120, 130, 150, 20);
+	    txtRenda.setBounds(65, 202, 150, 20);
 
 	    // ... (adicionar os campos restantes de forma similar)
 
 	    // CEP
 	    Label lblCEP = new Label(shell, SWT.NONE);
 	    lblCEP.setText("CEP:");
-	    lblCEP.setBounds(10, 160, 100, 20);
+	    lblCEP.setBounds(10, 228, 29, 20);
 	    txtCEP = new Text(shell, SWT.BORDER);
-	    txtCEP.setBounds(120, 160, 150, 20);
+	    txtCEP.setBounds(45, 228, 150, 20);
 
 	    // Cidade
 	    Label lblCidade = new Label(shell, SWT.NONE);
 	    lblCidade.setText("Cidade:");
-	    lblCidade.setBounds(10, 187, 100, 20);
+	    lblCidade.setBounds(10, 260, 45, 20);
 	    txtCidade = new Text(shell, SWT.BORDER);
-	    txtCidade.setBounds(120, 186, 200, 20);
+	    txtCidade.setBounds(55, 257, 200, 20);
 
 	    // Estado
 	    Label lblEstado = new Label(shell, SWT.NONE);
 	    lblEstado.setText("Estado:");
-	    lblEstado.setBounds(10, 223, 100, 20);
+	    lblEstado.setBounds(10, 286, 45, 20);
 	    cmbEstado = new Combo(shell, SWT.NONE);
-	    cmbEstado.setBounds(120, 220, 150, 20);
+	    cmbEstado.setBounds(55, 283, 150, 20);
 	    String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 	    cmbEstado.setItems(estados);
 
 	    Button btnEnviar = new Button(shell, SWT.PUSH);
 	    btnEnviar.setText("Enviar");
-	    btnEnviar.setBounds(217, 274, 100, 30); // Posicionando o botão na parte inferior da tela
-
+	    btnEnviar.setBounds(357, 303, 100, 30);
+	    
+	    Label lblLogradouro = new Label(shell, SWT.NONE);
+	    lblLogradouro.setBounds(10, 126, 74, 15);
+	    lblLogradouro.setText("Logradouro:");
+	    
+	    txtLogradouro = new Text(shell, SWT.BORDER);
+	    txtLogradouro.setBounds(104, 120, 76, 21);
+	    
+	    Label lblNumero = new Label(shell, SWT.NONE);
+	    lblNumero.setBounds(10, 148, 55, 15);
+	    lblNumero.setText("Numero:");
+	    
+	    txtNumero = new Text(shell, SWT.BORDER);
+	    txtNumero.setBounds(82, 145, 76, 21);
+	    
+	    Label lblComplemento = new Label(shell, SWT.NONE);
+	    lblComplemento.setBounds(10, 172, 88, 15);
+	    lblComplemento.setText("Complemento:");
+	    
+	    txtComplemento = new Text(shell, SWT.BORDER);
+	    txtComplemento.setBounds(104, 172, 76, 21);
+	    
 	    btnEnviar.addListener(SWT.Selection, new Listener() {
 	        public void handleEvent(Event e) {
 	            switch (e.type) {
@@ -153,11 +176,50 @@ public class TelaManutencaoVendedor {
 
 		String cpf = txtCPF.getText();
 		String nomeCompleto = txtNomeCompleto.getText();
+		String dataNascimento = txtDataNascimento.getText();
+		String renda = txtRenda.getText();
+		String numero = txtNumero.getText();
+		String Complemento = txtComplemento.getText();
+		String Logradouro = txtLogradouro.getText();
+		String CEP = txtCEP.getText();
+		String cidade = txtCidade.getText();
+		
+		String cep = txtCEP.getText();
 		// ... e assim por diante para os outros campos
 		 if (cpf.length() != 11) {
 	           mostrarMensagemErro("Formato do campo CPF inválido!");
 	           return;
 	       }
+	// Validando Data de Nascimento
+		 if (dataNascimento.matches("\\d{8}")) {
+			    dataNascimento = dataNascimento.substring(0, 2) + "/" + 
+			                     dataNascimento.substring(2, 4) + "/" + 
+			                     dataNascimento.substring(4);
+			}
+		 if (!dataNascimento.matches("\\d{2}/\\d{2}/\\d{4}")) {
+			    mostrarMensagemErro("Formato do campo Data de Nascimento inválido!");
+			    return;
+			}
+	    
+	    // Validando Número
+	    if (!numero.matches("\\d{1,7}")) {
+	        mostrarMensagemErro("Formato do campo Número inválido!");
+	        return;
+	    }
+
+	    // Validando Renda
+	    if (!renda.matches("\\d+\\.\\d+")) {
+	        mostrarMensagemErro("Formato do campo Renda inválido!");
+	        return;
+	    }
+
+	   
+
+	    // Validando CEP
+	    if (!cep.matches("\\d{8}")) {
+	        mostrarMensagemErro("Formato do campo CEP inválido!");
+	        return;
+	    }
 		// Realize as operações necessárias com os dados coletados
 
 		// Se tudo estiver correto, você pode mostrar uma mensagem de sucesso:
@@ -171,6 +233,5 @@ public class TelaManutencaoVendedor {
 	    messageBox.setMessage(mensagem);
 	    messageBox.open();
 	}
-	
 }
 
