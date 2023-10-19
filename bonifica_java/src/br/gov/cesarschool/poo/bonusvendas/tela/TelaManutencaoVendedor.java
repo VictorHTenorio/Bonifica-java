@@ -2,7 +2,13 @@ package br.gov.cesarschool.poo.bonusvendas.tela;
 
 import org.eclipse.swt.widgets.*;
 
+import br.gov.cesarschool.poo.bonusvendas.negocio.ResultadoInclusaoVendedor;
 import br.gov.cesarschool.poo.bonusvendas.negocio.VendedorMediator;
+import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
+import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
+import br.gov.cesarschool.poo.bonusvendas.dao.VendedorDAO;
+
+import java.time.LocalDate;
 
 import org.eclipse.swt.*;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -173,7 +179,7 @@ public class TelaManutencaoVendedor {
 	private void enviarDados() {
 		// Aqui você pode coletar os dados dos campos e realizar as operações necessárias.
 		// Por exemplo, salvar os dados em um banco de dados ou atualizar um registro existente.
-
+		br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo sexoSelecionado;
 		String cpf = txtCPF.getText();
 		String nomeCompleto = txtNomeCompleto.getText();
 		String dataNascimento = txtDataNascimento.getText();
@@ -196,10 +202,17 @@ public class TelaManutencaoVendedor {
 			                     dataNascimento.substring(2, 4) + "/" + 
 			                     dataNascimento.substring(4);
 			}
-		 if (!dataNascimento.matches("\\d{2}/\\d{2}/\\d{4}")) {
-			    mostrarMensagemErro("Formato do campo Data de Nascimento inválido!");
-			    return;
-			}
+		 LocalDate dataNasc = null;
+		 if (dataNascimento.matches("\\d{2}/\\d{2}/\\d{4}")) {
+		     String[] partesData = dataNascimento.split("/");
+		     int dia = Integer.parseInt(partesData[0]);
+		     int mes = Integer.parseInt(partesData[1]);
+		     int ano = Integer.parseInt(partesData[2]);
+		     dataNasc = LocalDate.of(ano, mes, dia);
+		 } else {
+		     mostrarMensagemErro("Formato do campo Data de Nascimento inválido!");
+		     return;
+		 }
 	    
 	    // Validando Número
 	    if (!numero.matches("\\d{1,7}")) {
@@ -220,12 +233,47 @@ public class TelaManutencaoVendedor {
 	        mostrarMensagemErro("Formato do campo CEP inválido!");
 	        return;
 	    }
+	    
+	    if (radSexoM.getSelection()) {
+	        sexoSelecionado = br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo.MASCULINO;
+	    } else if (radSexoF.getSelection()) {
+	        sexoSelecionado = br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo.FEMININO;
+	    } else {
+	        // Nenhum sexo foi selecionado. Você pode mostrar uma mensagem de erro ou definir um valor padrão.
+	        mostrarMensagemErro("Sexo não selecionado!");
+	        return;
+	    }
+	    
+	    
+	    
 		// Realize as operações necessárias com os dados coletados
-
-		// Se tudo estiver correto, você pode mostrar uma mensagem de sucesso:
-		MessageBox messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
-		messageBox.setMessage("Dados enviados com sucesso!");
-		messageBox.open();
+	    Endereco endereco = new Endereco(txtLogradouro.getText(), 
+                Integer.parseInt(txtNumero.getText()), 
+                txtComplemento.getText(), 
+                txtCEP.getText(), 
+                txtCidade.getText(), 
+                cmbEstado.getText(), 
+                "Brasil");
+	    Vendedor vendedor = new Vendedor(txtCPF.getText(),txtNomeCompleto.getText(),sexoSelecionado,dataNasc ,Double.parseDouble(txtRenda.getText()), 
+                endereco);
+	    VendedorMediator mediator = VendedorMediator.getInstancia();
+	    ResultadoInclusaoVendedor resultado = mediator.incluir(vendedor);
+	    
+	    if (resultado.getMensagemErroValidacao() == null) {
+	        Vendedor vendedorIncluido = mediator.buscar(vendedor.getCpf());
+	        if (vendedorIncluido != null) {
+	            MessageBox messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
+	            messageBox.setMessage("Dados enviados e verificados com sucesso!");
+	            messageBox.open();
+	        } else {
+	            mostrarMensagemErro("Erro: O vendedor foi incluído, mas não foi encontrado ao verificar.");
+	        }
+	    } else {
+	        mostrarMensagemErro(resultado.getMensagemErroValidacao());
+	    }
+	    
+	    
+		
 	}
 	
 	private void mostrarMensagemErro(String mensagem) {
