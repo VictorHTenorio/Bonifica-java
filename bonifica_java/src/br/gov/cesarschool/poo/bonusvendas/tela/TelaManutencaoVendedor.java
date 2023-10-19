@@ -8,6 +8,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.dao.VendedorDAO;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 import org.eclipse.swt.*;
@@ -204,11 +205,16 @@ public class TelaManutencaoVendedor {
 			}
 		 LocalDate dataNasc = null;
 		 if (dataNascimento.matches("\\d{2}/\\d{2}/\\d{4}")) {
-		     String[] partesData = dataNascimento.split("/");
-		     int dia = Integer.parseInt(partesData[0]);
-		     int mes = Integer.parseInt(partesData[1]);
-		     int ano = Integer.parseInt(partesData[2]);
-		     dataNasc = LocalDate.of(ano, mes, dia);
+			 try {
+		            String[] partesData = dataNascimento.split("/");
+		            int dia = Integer.parseInt(partesData[0]);
+		            int mes = Integer.parseInt(partesData[1]);
+		            int ano = Integer.parseInt(partesData[2]);
+		            dataNasc = LocalDate.of(ano, mes, dia);
+		        } catch (DateTimeException e) {
+		            mostrarMensagemErro("Data de Nascimento inválida!");
+		            return;
+		        }
 		 } else {
 		     mostrarMensagemErro("Formato do campo Data de Nascimento inválido!");
 		     return;
