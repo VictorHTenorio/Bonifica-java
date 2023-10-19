@@ -62,7 +62,7 @@ public class AcumuloResgateMediator {
 		  if (caixa != null) {
 			  caixa.creditar(valor);
 			  repositorioCaixaBonus.alterar(caixa);
-			  LancamentoBonusCredito lancamento = new LancamentoBonusCredito(numCaixaDeBonus, valor, LocalDateTime.now());
+			  LancamentoBonusCredito lancamento = new LancamentoBonusCredito(numCaixaDeBonus, valor, LocalDate.now());
 			  repositorioLancamento.incluir(lancamento);
 			  return null;
 		  } else {
@@ -80,7 +80,7 @@ public class AcumuloResgateMediator {
 			  if (caixa.getSaldo() >= valor) {
 				  caixa.debitar(valor);
 				  repositorioCaixaBonus.alterar(caixa);
-				  LancamentoBonusDebito lancamento = new LancamentoBonusDebito (numeroCaixaDeBonus, valor, LocalDateTime.now(), tipoResgate);
+				  LancamentoBonusDebito lancamento = new LancamentoBonusDebito (numeroCaixaDeBonus, valor, LocalDate.now(), tipoResgate);
 				  repositorioLancamento.incluir(lancamento);
 				  return null;
 			  } else {

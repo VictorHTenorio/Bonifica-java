@@ -1,7 +1,7 @@
 package br.gov.cesarschool.poo.bonusvendas.dao;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
 import br.gov.cesarschool.poo.bonusvendas.entidade.LancamentoBonus;
@@ -10,7 +10,7 @@ public class LancamentoBonusDAO {
 	private static final String BRANCO = "";
 	private CadastroObjetos cadastro = new CadastroObjetos(LancamentoBonus.class);
 	
-	public LancamentoBonus buscar(long numeroCaixaDeBonus, LocalDateTime dataHoraLancamento ) {
+	public LancamentoBonus buscar(long numeroCaixaDeBonus, LocalDate dataHoraLancamento ) {
 		return (LancamentoBonus)cadastro.buscar(BRANCO + numeroCaixaDeBonus + dataHoraLancamento);
 	}
 	
