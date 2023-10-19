@@ -61,7 +61,7 @@ public class TelaManutencaoVendedor {
 	    // CPF
 	    Label lblCPF = new Label(shell, SWT.NONE);
 	    lblCPF.setText("CPF:");
-	    lblCPF.setBounds(10, 39, 100, 20);
+	    lblCPF.setBounds(10, 39, 29, 20);
 	    txtCPF = new Text(shell, SWT.BORDER);
 	    txtCPF.setBounds(45, 39, 150, 20);
 
@@ -75,7 +75,7 @@ public class TelaManutencaoVendedor {
 	    // Sexo
 	    Label lblSexo = new Label(shell, SWT.NONE);
 	    lblSexo.setText("Sexo:");
-	    lblSexo.setBounds(10, 70, 100, 20);
+	    lblSexo.setBounds(10, 70, 39, 20);
 	    radSexoM = new Button(shell, SWT.RADIO);
 	    radSexoM.addSelectionListener(new SelectionAdapter() {
 	    	@Override
@@ -83,7 +83,7 @@ public class TelaManutencaoVendedor {
 	    	}
 	    });
 	    radSexoM.setText("Masculino");
-	    radSexoM.setBounds(55, 70, 100, 20);
+	    radSexoM.setBounds(55, 70, 83, 20);
 	    radSexoF = new Button(shell, SWT.RADIO);
 	    radSexoF.setText("Feminino");
 	    radSexoF.setBounds(161, 70, 100, 20);
