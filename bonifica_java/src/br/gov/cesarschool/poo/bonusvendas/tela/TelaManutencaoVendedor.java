@@ -1,6 +1,9 @@
 package br.gov.cesarschool.poo.bonusvendas.tela;
 
 import org.eclipse.swt.widgets.*;
+
+import br.gov.cesarschool.poo.bonusvendas.negocio.VendedorMediator;
+
 import org.eclipse.swt.*;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -20,6 +23,7 @@ public class TelaManutencaoVendedor {
 	private Text txtCEP;
 	private Text txtCidade;
 	private Combo cmbEstado;
+	private VendedorMediator mediator = VendedorMediator.getInstancia();
 
 	/**
 	 * Launch the application.
@@ -150,7 +154,10 @@ public class TelaManutencaoVendedor {
 		String cpf = txtCPF.getText();
 		String nomeCompleto = txtNomeCompleto.getText();
 		// ... e assim por diante para os outros campos
-
+		 if (cpf.length() != 11) {
+	           mostrarMensagemErro("Formato do campo CPF inválido!");
+	           return;
+	       }
 		// Realize as operações necessárias com os dados coletados
 
 		// Se tudo estiver correto, você pode mostrar uma mensagem de sucesso:
@@ -158,4 +165,12 @@ public class TelaManutencaoVendedor {
 		messageBox.setMessage("Dados enviados com sucesso!");
 		messageBox.open();
 	}
+	
+	private void mostrarMensagemErro(String mensagem) {
+	    MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+	    messageBox.setMessage(mensagem);
+	    messageBox.open();
+	}
+	
 }
+
