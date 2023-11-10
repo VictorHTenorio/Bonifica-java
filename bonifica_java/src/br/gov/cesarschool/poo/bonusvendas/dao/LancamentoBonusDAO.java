@@ -1,7 +1,6 @@
 package br.gov.cesarschool.poo.bonusvendas.dao;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
@@ -9,6 +8,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.LancamentoBonus;
 
 public class LancamentoBonusDAO {
 	private CadastroObjetos cadastro = new CadastroObjetos(LancamentoBonus.class); 
+	
 	public boolean incluir(LancamentoBonus lancamento) {
 		String idUnico = obterIdUnico(lancamento);
 		LancamentoBonus lancamentoBusca = buscar(idUnico);  
@@ -30,14 +30,14 @@ public class LancamentoBonusDAO {
 		}		
 	}
 	public LancamentoBonus buscar(String codigo) {
-		// Esta operação entre () vai ter significado mais à frente! 
+		// Esta operaï¿½ï¿½o entre () vai ter significado mais ï¿½ frente! 
 		return (LancamentoBonus)cadastro.buscar(codigo);
 	}
 	public LancamentoBonus[] buscarTodos() {
 		Serializable[] rets = cadastro.buscarTodos(LancamentoBonus.class);
 		LancamentoBonus[] lancamentos = new LancamentoBonus[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			// Esta operação entre () vai ter significado mais à frente! 
+			// Esta operaï¿½ï¿½o entre () vai ter significado mais ï¿½ frente! 
 			lancamentos[i] = (LancamentoBonus)rets[i];
 		}
 		return lancamentos;
