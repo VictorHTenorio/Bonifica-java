@@ -6,7 +6,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Registro;
 public class LancamentoBonusDAO {
 	private DAOGenerico dao;
 	public LancamentoBonusDAO() {
-		this.dao = new DAOGenerico(LancamentoBonusDAO.class);
+		this.dao = new DAOGenerico(LancamentoBonus.class);
 	}
 	public boolean incluir(LancamentoBonus lancamento) {
 		return dao.incluir(lancamento);	 

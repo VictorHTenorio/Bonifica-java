@@ -6,7 +6,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Registro;
 public class VendedorDAO {
 	private DAOGenerico dao;
 	public VendedorDAO() {
-        this.dao = new DAOGenerico(VendedorDAO.class);
+        this.dao = new DAOGenerico(Vendedor.class);
     }
 	public boolean incluir(Vendedor vend) {
 		return dao.incluir(vend);
