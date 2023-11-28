@@ -10,43 +10,33 @@ public class DAOGenerico {
 
 	public DAOGenerico(Class<?> tipo) {
 		super();
-		cadastro = new CadastroObjetos(tipo);
+		this.cadastro = new CadastroObjetos(tipo);
 	}
-	
-	private String obterId(Registro conteudo) {
-		return conteudo.getIdUnico();
-	}
-	
 	public boolean incluir(Registro reg) {
-		String idUnico = obterId(reg);
-		Registro novo = buscar(idUnico);
+		Registro novo = buscar(reg.getIdUnico());
 		if (novo != null) {
 			return false;
 		} else {
-			cadastro.incluir(novo, idUnico);
+			cadastro.incluir(reg, reg.getIdUnico());
 			return true;
 		}
 	}
-	
 	public boolean alterar(Registro reg) {
-		String idUnico = obterId(reg);
-		Registro novo = buscar(idUnico);
+		Registro novo = buscar(reg.getIdUnico());
 		if (novo == null) {
 			return false;
 		} else {
-			cadastro.alterar(reg, idUnico);
+			cadastro.alterar(reg, reg.getIdUnico());
 			return true;
 		}
 	}
-	
 	public Registro buscar(String id) {
 		return (Registro)cadastro.buscar(id);
 	}
-	
 	public Registro[] buscarTodos() {
 		Serializable[] rets = cadastro.buscarTodos(Registro.class);
 		Registro[] registros = new Registro[rets.length];
-		for(int i=0; i<rets.length; i++) { 
+		for(int i=0; i<rets.length; i++) {
 			registros[i] = (Registro)rets[i];
 		}
 		return registros;
