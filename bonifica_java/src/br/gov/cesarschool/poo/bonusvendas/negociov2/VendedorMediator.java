@@ -44,49 +44,49 @@ public class VendedorMediator {
 	}
 	private void validar(Vendedor vendedor) throws ExcecaoValidacao{
 		ArrayList<ErroValidacao> erros = new ArrayList<>();
-		if (StringUtil.ehNuloOuBranco(vendedor.getCpf())) {
-			erros.add(new ErroValidacao(1, "CPF nao informado"));
-		}
-		if (!ValidadorCPF.ehCpfValido(vendedor.getCpf())) {
-			erros.add(new ErroValidacao(2, "CPF invalido"));
-		}
-		if (StringUtil.ehNuloOuBranco(vendedor.getNomeCompleto())) {
-			erros.add(new ErroValidacao(3, "Nome completo nao informadoo"));
-		}
-		if (vendedor.getSexo() == null) {
-			erros.add(new ErroValidacao(4, "Sexo nao informado"));
-		}
-		if (vendedor.getDataNascimento() == null) {
-			erros.add(new ErroValidacao(5, "Data de nascimento nao informada"));
-		}
-		if (dataNascimentoInvalida(vendedor.getDataNascimento())) {
-			erros.add(new ErroValidacao(6, "Data de nascimento invalida"));
-		}
-		if (vendedor.getRenda() < 0) {
-			erros.add(new ErroValidacao(7, "Renda menor que zero"));		
-		}
-		if (vendedor.getEndereco() == null) {
-			erros.add(new ErroValidacao(8, "Endereco nao informado"));
-		}
-		if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getLogradouro())) {
-			erros.add(new ErroValidacao(9, "Logradouro nao informado"));
-		}
-		if (vendedor.getEndereco().getLogradouro().length() < 4) {
-			erros.add(new ErroValidacao(10, "Logradouro tem menos de 04 caracteres"));
-		}		
-		if (vendedor.getEndereco().getNumero() < 0) {
-			erros.add(new ErroValidacao(11, "Numero menor que zero"));
-		}				
-		if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getCidade())) {
-			erros.add(new ErroValidacao(12, "Cidade nao informada"));
-		}
-		if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getEstado())) {
-			erros.add(new ErroValidacao(13, "Estado nao informado"));
-		}		
-		if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getPais())) {
-			erros.add(new ErroValidacao(14, "Pais nao informado"));
-		}
-		if (!erros.isEmpty()) {
+        if (StringUtil.ehNuloOuBranco(vendedor.getCpf())){
+            erros.add(new ErroValidacao(1, "CPF nao informado"));
+        } else if (!ValidadorCPF.ehCpfValido(vendedor.getCpf())) {
+            erros.add(new ErroValidacao(2, "CPF invalido"));
+        }
+        if (StringUtil.ehNuloOuBranco(vendedor.getNomeCompleto())) {
+            erros.add(new ErroValidacao(3, "Nome completo nao informado"));
+        }
+        if (vendedor.getSexo() == null) {
+            erros.add(new ErroValidacao(4, "Sexo nao informado"));
+        }
+        if (vendedor.getDataNascimento() == null) {
+            erros.add(new ErroValidacao(5, "Data de nascimento nao informada"));
+        }else if (dataNascimentoInvalida(vendedor.getDataNascimento())) {
+            erros.add(new ErroValidacao(6, "Data de nascimento invalida"));
+        }
+        if (vendedor.getRenda() < 0) {
+            erros.add(new ErroValidacao(7, "Renda menor que zero"));
+        }
+        if (vendedor.getEndereco() == null) {
+            erros.add(new ErroValidacao(8, "Endereco nao informado"));
+        }else {
+            if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getLogradouro())) {
+                erros.add(new ErroValidacao(9, "Logradouro nao informado"));
+            }else if (vendedor.getEndereco().getLogradouro().length() < 4) {
+                erros.add(new ErroValidacao(10, "Logradouro tem menos de 04 caracteres"));
+            }
+            if (vendedor.getEndereco().getNumero() < 0) {
+                erros.add(new ErroValidacao(11, "Numero menor que zero"));
+            }
+            if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getCidade())) {
+                erros.add(new ErroValidacao(12, "Cidade nao informada"));
+            }
+            if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getEstado())) {
+                erros.add(new ErroValidacao(13, "Estado nao informado"));
+            }
+            if (StringUtil.ehNuloOuBranco(vendedor.getEndereco().getPais())) {
+                erros.add(new ErroValidacao(14, "Pais nao informado"));
+            }
+        }
+
+
+        if (!erros.isEmpty()) {
             throw new ExcecaoValidacao(erros);
         }
 	}
