@@ -8,12 +8,12 @@ import br.gov.cesarschool.poo.bonusvendas.excecoes.ExcecaoObjetoNaoExistente;
 public class DAOGenericoTp<T extends Registro> {
     CadastroObjetos cadastro;
     private String nomeEntidade;
-    private Class<T> tipo; // Adiciona um campo para armazenar o tipo
+    private Class<T> tipo; 
 
   public DAOGenericoTp(Class<T> tipo, String nomeEntidade) {
         this.cadastro = new CadastroObjetos(tipo);
         this.nomeEntidade = nomeEntidade;
-        this.tipo = tipo; // Armazena o tipo passado no construtor
+        this.tipo = tipo; 
     }
 
     public void incluir(T reg) throws ExcecaoObjetoJaExistente {
@@ -39,8 +39,8 @@ public class DAOGenericoTp<T extends Registro> {
     }
 
     public T[] buscarTodos() {
-        Object[] rets = cadastro.buscarTodos(tipo); // Agora tipo está disponível
-        T[] registros = (T[]) java.lang.reflect.Array.newInstance(tipo, rets.length); // Cria um array do tipo genérico
+        Object[] rets = cadastro.buscarTodos(tipo);
+        T[] registros = (T[]) java.lang.reflect.Array.newInstance(tipo, rets.length); 
         for (int i = 0; i < rets.length; i++) {
             registros[i] = (T) rets[i];
         }
